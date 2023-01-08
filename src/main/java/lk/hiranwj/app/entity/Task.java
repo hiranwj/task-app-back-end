@@ -4,30 +4,20 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 
-@Entity
 @Data @NoArgsConstructor @AllArgsConstructor
 /* There is no need to implement serializable because the super entity is placed */
 public class Task implements SuperEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private int id;
-
-    @Column(nullable = false)
     private String content;
-
-    @Enumerated(EnumType.STRING)
     private Status status;
+    private int project_id;
 
-    @ManyToOne
-    @JoinColumn(name = "project_id", referencedColumnName = "id", nullable = false)
-    private Project project;
-
-    public Task(String content, Status status, Project project) {
+    public Task(String content, Status status, int project_id) {
         this.content = content;
         this.status = status;
-        this.project = project;
+        this.project_id = project_id;
     }
 
     public static enum Status {
