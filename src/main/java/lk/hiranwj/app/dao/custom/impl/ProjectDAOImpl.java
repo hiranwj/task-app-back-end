@@ -11,6 +11,10 @@ public class ProjectDAOImpl implements ProjectDAO {
 
     private Connection connection;
 
+    public ProjectDAOImpl(Connection connection) {
+
+    }
+
     @Override
     public Project save(Project project) {
         return null;

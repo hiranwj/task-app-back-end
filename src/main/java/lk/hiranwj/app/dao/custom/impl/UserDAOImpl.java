@@ -11,6 +11,10 @@ public class UserDAOImpl implements UserDAO {
 
     private Connection connection;
 
+    public UserDAOImpl(Connection connection) {
+
+    }
+
     @Override
     public User save(User user) {
         return null;

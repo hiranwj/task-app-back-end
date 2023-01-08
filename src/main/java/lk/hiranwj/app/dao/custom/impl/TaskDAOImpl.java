@@ -11,6 +11,10 @@ public class TaskDAOImpl implements TaskDAO {
 
     private Connection connection;
 
+    public TaskDAOImpl(Connection connection) {
+
+    }
+
     @Override
     public Task save(Task task) {
         return null;
