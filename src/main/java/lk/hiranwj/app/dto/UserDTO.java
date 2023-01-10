@@ -1,5 +1,6 @@
 package lk.hiranwj.app.dto;
 
+import lk.hiranwj.app.util.ValidationGroups;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +19,7 @@ public class UserDTO implements Serializable {
     @Pattern(regexp = "^[A-Za-z ]+$", message = "Invalid name")
     private String fullName;
 
-    @NotBlank(message = "Username can't be empty or null")
+    @NotBlank(message = "Username can't be empty or null", groups = ValidationGroups.Create.class)
     private String username;
 
     @NotEmpty(message = "Password can't be empty or null")
