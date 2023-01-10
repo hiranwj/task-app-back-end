@@ -1,5 +1,7 @@
 package lk.hiranwj.app.api;
 
+import lk.hiranwj.app.dto.UserDTO;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
@@ -7,8 +9,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/users")
 public class UserController {
 
-    @PostMapping
-    public void createUserAccount() {
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping(consumes = "application/json")
+    public void createUserAccount(@RequestBody UserDTO user) {
 
     }
 
