@@ -13,10 +13,11 @@ import java.util.Optional;
 
 public class UserDAOImpl implements UserDAO {
 
-    private Connection connection;
+    private final Connection connection;
 
     public UserDAOImpl(Connection connection) {
 
+        this.connection = connection;
     }
 
     @Override
