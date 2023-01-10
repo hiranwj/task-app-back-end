@@ -128,9 +128,9 @@ public class ProjectDAOImpl implements ProjectDAO {
                         rst.getString("username")
                 ));
             }
+            return projectList;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return null;
     }
 }
