@@ -21,14 +21,15 @@ public class TaskDAOImpl implements TaskDAO {
     }
 
     @Override
-    public void update() {
+    public void update(Task task) {
 
     }
 
     @Override
-    public void deleteById() {
+    public void deleteById(Integer pk) {
 
     }
+
 
     @Override
     public Optional<Task> findById(Integer pk) {
@@ -46,7 +47,8 @@ public class TaskDAOImpl implements TaskDAO {
     }
 
     @Override
-    public boolean existById(Integer pk) {
+    public boolean existsById(Integer pk) {
         return false;
     }
+
 }
