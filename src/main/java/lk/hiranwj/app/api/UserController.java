@@ -2,16 +2,11 @@ package lk.hiranwj.app.api;
 
 import lk.hiranwj.app.dto.UserDTO;
 import lk.hiranwj.app.util.ValidationGroups;
-import lombok.Value;
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.Errors;
-import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
-import java.util.Optional;
 
 @CrossOrigin
 @RestController
@@ -35,13 +30,15 @@ public class UserController {
         System.out.println(user);
     }
 
-    @GetMapping("/me")
-    public void getUserAccountDetails(){
-
+    @GetMapping(value = "/me", produces = "application/json")
+    public UserDTO getUserAccountDetails(){
+        System.out.println("getUserAccountDetails()");
+        return new UserDTO();
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/me")
     public void deleteUserAccount(){
-
+        System.out.println("deleteUserAccount()");
     }
 }
