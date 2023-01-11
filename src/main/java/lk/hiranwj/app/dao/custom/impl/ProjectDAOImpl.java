@@ -1,19 +1,24 @@
 package lk.hiranwj.app.dao.custom.impl;
 
 import lk.hiranwj.app.dao.custom.ProjectDAO;
+import lk.hiranwj.app.dao.util.ConnectionUtil;
 import lk.hiranwj.app.entity.Project;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Component
+@Scope("request")
 public class ProjectDAOImpl implements ProjectDAO {
 
     private final Connection connection;
 
-    public ProjectDAOImpl(Connection connection) {
-        this.connection = connection;
+    public ProjectDAOImpl() {
+        this.connection = ConnectionUtil.getConnection();
     }
 
     @Override
