@@ -1,9 +1,8 @@
 package lk.hiranwj.app.dao.custom.impl;
 
 import lk.hiranwj.app.dao.custom.UserDAO;
-import lk.hiranwj.app.dao.util.ConnectionUtil;
 import lk.hiranwj.app.entity.User;
-import org.springframework.context.annotation.Scope;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
@@ -15,15 +14,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-@Scope("request")
 public class UserDAOImpl implements UserDAO {
 
-    private final Connection connection;
+    @Autowired
+    private Connection connection;
 
-    public UserDAOImpl() {
-
-        this.connection = ConnectionUtil.getConnection();
-    }
 
     @Override
     public User save(User user) {
