@@ -1,6 +1,7 @@
 package lk.hiranwj.app.api;
 
 import lk.hiranwj.app.dto.UserDTO;
+import lk.hiranwj.app.service.custom.UserService;
 import lk.hiranwj.app.util.ValidationGroups;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
@@ -13,15 +14,16 @@ import javax.validation.Valid;
 @RequestMapping("/api/v1/users")
 public class UserController {
 
+    private UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(consumes = "application/json")
     public void createUserAccount(@Validated(ValidationGroups.Create.class) @Valid @RequestBody UserDTO user) {
-//    public void createUserAccount(@Valid @RequestBody UserDTO user, Errors errors) {
-        System.out.println(user);
-//        Optional<FieldError> firstError = errors.getFieldErrors().stream().findFirst();
-//        if (firstError.isPresent()) {
-//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, firstError.get().getDefaultMessage());
-//        }
+        userService.createNewUserAccount(user);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)

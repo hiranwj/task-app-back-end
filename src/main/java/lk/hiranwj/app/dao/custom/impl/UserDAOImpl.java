@@ -15,7 +15,6 @@ import java.util.Optional;
 @Component
 public class UserDAOImpl implements UserDAO {
 
-
     private final Connection connection;
 
     public UserDAOImpl(Connection connection) {

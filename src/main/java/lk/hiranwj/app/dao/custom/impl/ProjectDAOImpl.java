@@ -2,6 +2,7 @@ package lk.hiranwj.app.dao.custom.impl;
 
 import lk.hiranwj.app.dao.custom.ProjectDAO;
 import lk.hiranwj.app.entity.Project;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.sql.*;
@@ -11,7 +12,6 @@ import java.util.Optional;
 
 @Component
 public class ProjectDAOImpl implements ProjectDAO {
-
     private final Connection connection;
 
     public ProjectDAOImpl(Connection connection) {

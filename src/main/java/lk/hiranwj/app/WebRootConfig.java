@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.jndi.JndiObjectFactoryBean;
+import org.springframework.web.context.annotation.RequestScope;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -16,13 +17,13 @@ public class WebRootConfig {
     @Bean
     public JndiObjectFactoryBean dataSource() {
         JndiObjectFactoryBean jndi = new JndiObjectFactoryBean();
-        jndi.setJndiName("java:comp/enc/jdbc/task-app");
+        jndi.setJndiName("java:comp/env/jdbc/task-app");
         jndi.setExpectedType(DataSource.class);
         return jndi;
     }
 
     @Bean(destroyMethod = "close")
-    @Scope("request")
+    @RequestScope
     public Connection connection(DataSource dataSource) throws SQLException {
             return dataSource.getConnection();
     }
