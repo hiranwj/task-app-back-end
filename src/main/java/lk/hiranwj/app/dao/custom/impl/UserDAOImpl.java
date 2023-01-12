@@ -6,11 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,7 +13,7 @@ import java.util.Optional;
 public class UserDAOImpl implements UserDAO {
 
     @Autowired
-    private final JdbcTemplate jdbc;
+    private final JdbcTemplate jdbc;    /* Jdbc template variable */
 
     public UserDAOImpl(JdbcTemplate jdbc) {
         this.jdbc = jdbc;
@@ -52,7 +47,6 @@ public class UserDAOImpl implements UserDAO {
                 user.getFullName(),
                 user.getPassword(),
                 user.getUsername());
-
 //        try {
 //            PreparedStatement stm = connection.prepareStatement("UPDATE User SET full_name=?, password=? WHERE username=?");
 //            stm.setString(1, user.getFullName());
@@ -80,12 +74,12 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public Optional<User> findById(String username) {
-        return jdbc.query("SELECT full_name, password FROM User WHERE username=?", rst -> {
-                return Optional.of(new User(username,
+        return Optional.ofNullable(jdbc.query("SELECT full_name, password FROM User WHERE username=?", rst -> {
+                return new User(username,
                         rst.getString("password"),
                         rst.getString("full_name")
-                        ));
-        },username);
+                        );
+        },username));
 
 //        try {
 //            PreparedStatement stm = connection.prepareStatement("SELECT full_name, password FROM User WHERE username=?");
