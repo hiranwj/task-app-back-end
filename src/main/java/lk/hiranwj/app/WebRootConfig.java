@@ -27,11 +27,11 @@ public class WebRootConfig {
         return jndi;
     }
 
-    @Bean("prototype")
-    @RequestScope
-    public Connection connection(DataSource ds) throws SQLException {
-        return DataSourceUtils.getConnection(ds);
-    }
+//    @Bean("prototype")
+//    @RequestScope
+//    public Connection connection(DataSource ds) throws SQLException {
+//        return DataSourceUtils.getConnection(ds);
+//    }
 
     @Bean
     public JdbcTemplate jdbcTemplate(DataSource ds) {
