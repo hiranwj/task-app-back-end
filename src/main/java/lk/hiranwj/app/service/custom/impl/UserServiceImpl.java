@@ -3,6 +3,7 @@ package lk.hiranwj.app.service.custom.impl;
 import lk.hiranwj.app.dao.custom.UserDAO;
 import lk.hiranwj.app.dto.UserDTO;
 import lk.hiranwj.app.entity.User;
+import lk.hiranwj.app.exception.AccessDeniedException;
 import lk.hiranwj.app.service.custom.UserService;
 import lk.hiranwj.app.util.Transformer;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -28,5 +29,14 @@ public class UserServiceImpl implements UserService {
 
 //        if (true) throw new RuntimeException("Failed");
 //        userDAO.save(new User("testing", "testing", "testing"));
+    }
+
+    @Override
+    public UserDTO verifyUser(String username, String password) {
+        UserDTO user = userDAO.findById(username).map(transformer::toUserDTO).orElseThrow(AccessDeniedException::new);
+        if (DigestUtils.sha256Hex(password).equals(user.getPassword())) {
+            return user;
+        }
+        throw new AccessDeniedException();
     }
 }
